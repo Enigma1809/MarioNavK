@@ -63,18 +63,11 @@ function setup() {
 }
 
 function draw() {
-  background("blue");
+    background("blue");
 
-  //console.log(score);
-  //score = score + Math.round(frameCount / 80);
-
-  if (gameState === PLAY) {
+    if (gameState === PLAY) {
     ground.velocityX = -2;
     
-    if (keyDown("space") && brickGroup.isTouching(mario)) {
-      score = score + 1;
-    }
-
     if (ground.x < 0) {
       ground.x = ground.width / 2;
     }
@@ -89,6 +82,20 @@ function draw() {
 
     //spawn the bricks
     spawnBricks();
+    
+    //Calculating the score
+    if(mario.isTouching(brickGroup))
+    {
+        score=score+1;
+        for (i=0;i<brickGroup.length;i++)
+        {
+          if(brickGroup[i].isTouching(mario))
+          {
+            brickGroup[i].destroy();
+          }
+        }
+
+    }
     
     if(obstacleGroup.isTouching(mario))
       {
