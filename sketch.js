@@ -38,7 +38,8 @@ function setup() {
   bkgnd.addImage("bkgnd", bkgndImg);
   //bkgnd.scale = 1.2;
 
-  mario = createSprite(50, 140, 20, 50);
+  //mario = createSprite(50, 140, 20, 50);
+  mario = createSprite(50, 30, 20, 50);
   mario.addAnimation("running", mario_running);
   edges = createEdgeSprites();
 
@@ -65,9 +66,13 @@ function setup() {
 function draw() {
     background("blue");
 
-    if (gameState === PLAY) {
+    if (gameState === PLAY) {
     ground.velocityX = -2;
     
+    /*if (keyDown("space") && brickGroup.isTouching(mario)) {
+      score = score + 1;
+    }*/
+
     if (ground.x < 0) {
       ground.x = ground.width / 2;
     }
